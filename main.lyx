@@ -1,0 +1,875 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package babel
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Árboles, Teoría e Implementación"
+\pdf_author "René Mujica Moreau"
+\pdf_subject "Teoría e Implementación del Tipo Abstracto de Dato Árbol y sus variantes."
+\pdf_keywords "tad arbol edd estructuras de datos utfsm"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize letterpaper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 1.5cm
+\rightmargin 1.5cm
+\bottommargin 1.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\lang english
+Árboles, Teoría e Implementación
+\end_layout
+
+\begin_layout Author
+
+\lang english
+René Mujica Moreau <rene.mujica@alumnos.usm.cl>
+\end_layout
+
+\begin_layout Part
+
+\lang english
+Teoría de Árboles
+\end_layout
+
+\begin_layout Chapter
+
+\lang english
+Árboles Generales
+\end_layout
+
+\begin_layout Section
+
+\lang english
+Resumen
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+Un árbol es un Tipo Abstracto de Dato no lineal (un TAD lineal tiene único
+ antecesor y único sucesor) y jerarquizado (un único predecesor y múltiples
+ sucesores.
+ La Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:1"
+
+\end_inset
+
+ muestra un árbol general.
+ Aquí podemos apreciar que no tiene definido un número máximo de sucesores
+ (hay nodos con 1, 2 y 3 hijos).
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/grafico1.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\lang english
+Un árbol general.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+En general, un árbol es una colección de elementos llamados 
+\emph on
+nodos
+\emph default
+, donde uno de ellos es denominado 
+\emph on
+raíz
+\emph default
+ del árbol, junto a una 
+\emph on
+relación padre-hijo
+\emph default
+ que coloca a todos los nodos en una 
+\emph on
+estructura jerárquica
+\emph default
+.
+ Un árbol dirigido es aquel donde la relación padre-hijo tiene una dirección
+ definida.
+ Éstos cumplen con las siguientes propiedades:
+\end_layout
+
+\begin_layout Enumerate
+
+\lang english
+Son estructuras 
+\emph on
+jerárquicas
+\emph default
+ (se ordenan en diferentes niveles)
+\end_layout
+
+\begin_layout Enumerate
+
+\lang english
+Son estructuras 
+\emph on
+organizadas
+\emph default
+ (
+\emph on
+si
+\emph default
+ importa la forma del árbol)
+\end_layout
+
+\begin_layout Enumerate
+
+\lang english
+Son estructuras 
+\emph on
+dinámicas
+\emph default
+ (la forma y contenido del árbol es variable)
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+La relación padre-hijo se representa por medio de una 
+\emph on
+arista
+\emph default
+ entre dos nodos distintos.
+ Esta representación asegura que hay un único nodo raíz, cada nodo (exceptuando
+ la raíz por supuesto) tiene un único padre, y existe un único 
+\emph on
+camino
+\emph default
+ (formado por aristas) entre la raíz y un nodo terminal.
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+Los nodos, dependiendo de la posición, se clasifican en tres diferentes
+ tipos:
+\end_layout
+
+\begin_layout Itemize
+Raíz, si el nodo no tiene padre
+\end_layout
+
+\begin_layout Itemize
+Nodo intermedio o interno, si el nodo tiene padre y tiene hijos
+\end_layout
+
+\begin_layout Itemize
+Hoja o nodo terminal, si el nodo no tiene hijos
+\end_layout
+
+\begin_layout Standard
+Por lo tanto se puede formular una definición de manera recursiva de árbol,
+ que se ve en la subsección siguiente.
+\end_layout
+
+\begin_layout Subsection
+
+\lang english
+Definición recursiva
+\end_layout
+
+\begin_layout Standard
+
+\lang english
+Un árbol se puede definir recursivamente de la siguiente manera:
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+como árbol vacío o nulo
+\end_layout
+
+\begin_layout Itemize
+
+\lang english
+o una raíz con un número finito de árboles hijos, denominados subárboles
+\end_layout
+
+\begin_layout Section
+
+\lang english
+Terminología
+\end_layout
+
+\begin_layout Standard
+Usando como guía la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:2"
+
+\end_inset
+
+, podemos ver que un árbol contiene los siguientes elementos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/grafico2.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Árbol general de referencia
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Raíz: único nodo sin padre
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nodo 
+\begin_inset Formula $A$
+\end_inset
+
+ es el nodo raíz.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Nodo
+\begin_inset space ~
+\end_inset
+
+Interno
+\begin_inset space ~
+\end_inset
+
+o
+\begin_inset space ~
+\end_inset
+
+Interior: nodo que tiene al menos un hijo
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Todos los nodos pintados de color celeste son nodos internos.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Nodo
+\begin_inset space ~
+\end_inset
+
+hoja
+\begin_inset space ~
+\end_inset
+
+o
+\begin_inset space ~
+\end_inset
+
+Exterior: nodo que no tiene hijos
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Todos los nodos pintados de color verde son nodos hoja.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Subárbol: árbol formado por un nodo y sus descendientes
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Podemos reconocer claramente los subárboles 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+, aunque los nodos 
+\begin_inset Formula $E$
+\end_inset
+
+ y 
+\begin_inset Formula $D$
+\end_inset
+
+ también son subárboles de los nodos 
+\begin_inset Formula $B$
+\end_inset
+
+ y 
+\begin_inset Formula $A$
+\end_inset
+
+ respectivamente.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Camino
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $n_{1},\ldots,n_{k}$
+\end_inset
+
+: secuencia de nodos en un árbol tal que 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ es padre de 
+\begin_inset Formula $n_{i+1}$
+\end_inset
+
+ para 
+\begin_inset Formula $1\leq i<k$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+camino(A,K) = {A,B,F,K}
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si existe camino entre 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $n_{2}$
+\end_inset
+
+, entonces se dice que 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+ es 
+\emph on
+ancestro 
+\emph default
+de 
+\begin_inset Formula $n_{2}$
+\end_inset
+
+ y 
+\begin_inset Formula $n_{2}$
+\end_inset
+
+ es 
+\emph on
+descendiente
+\emph default
+ de 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+camino(C,K) = {}
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Largo
+\begin_inset space ~
+\end_inset
+
+del
+\begin_inset space ~
+\end_inset
+
+camino: número de aristas que hay desde el nodo de origen hasta el nodo
+ de destino, también se puede calcular como el número de nodos del camino
+ menos 1.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+largo_camino(A,K) = 3
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+largo_camino(C,K) = 0
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Rama: camino desde la raíz hasta una hoja
+\end_layout
+
+\begin_layout Description
+Grado
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+un
+\begin_inset space ~
+\end_inset
+
+nodo: número de descendientes directos del nodo (número de hijos)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang spanish-mexico
+El grado de una hoja es 0
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\lang spanish-mexico
+Grado
+\begin_inset space ~
+\end_inset
+
+del
+\begin_inset space ~
+\end_inset
+
+árbol: el máximo de los grados entre los nodos del árbol (la máxima cantidad
+ de hijos de cualquier nodo del árbol).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang spanish-mexico
+Una lista es un árbol de grado 1
+\end_layout
+
+\begin_layout Itemize
+
+\lang spanish-mexico
+Un árbol binario es un árbol de grado 2
+\end_layout
+
+\begin_layout Itemize
+
+\lang spanish-mexico
+Un árbol multicamino es un árbol de grado mayor a 2
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\lang spanish-mexico
+Profundidad
+\begin_inset space ~
+\end_inset
+
+o
+\begin_inset space ~
+\end_inset
+
+nivel
+\begin_inset space ~
+\end_inset
+
+de
+\begin_inset space ~
+\end_inset
+
+un
+\begin_inset space ~
+\end_inset
+
+nodo: número de predecesores, se calcula usando el largo del camino desde
+ la raíz al nodo.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+\lang spanish-mexico
+profundidad(A) = 0
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+\lang spanish-mexico
+profundidad(J) = 3
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\lang spanish-mexico
+Altura
+\begin_inset space ~
+\end_inset
+
+del
+\begin_inset space ~
+\end_inset
+
+árbol: el máximo de las profundidades entre los nodos del árbol (longitud
+ de la rama más larga).
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang spanish-mexico
+altura() = 3
+\end_layout
+
+\end_deeper
+\begin_layout Description
+
+\lang spanish-mexico
+Bosque: colección de dos o más árboles desconexos.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árbol
+\begin_inset space ~
+\end_inset
+
+completo: si el grado de todo nodo interno es igual al grado del árbol.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árbol
+\begin_inset space ~
+\end_inset
+
+lleno: si es completo y todas sus hojas están en el mismo nivel o profundidad.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árbol
+\begin_inset space ~
+\end_inset
+
+casi
+\begin_inset space ~
+\end_inset
+
+lleno: árbol lleno hasta el penúltimo nivel, donde las hojas se encuentran
+ ubicadas lo más a la izquierda posible.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árbol
+\begin_inset space ~
+\end_inset
+
+perfectamente
+\begin_inset space ~
+\end_inset
+
+equilibrado: si para cada nodo interno, la cantidad de nodos pertenecientes
+ a cada subárbol (que sea descendiente del nodo interno) no varía en más
+ de uno entre sí, el árbol se llama perfectamente equilibrado.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árbol
+\begin_inset space ~
+\end_inset
+
+balanceado
+\begin_inset space ~
+\end_inset
+
+en
+\begin_inset space ~
+\end_inset
+
+altura: árbol cuyos subárboles tienen alturas que difieren a lo más en 1.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árboles
+\begin_inset space ~
+\end_inset
+
+isomorfos: árboles que comparten la misma estructura pero no necesariamente
+ los mismos datos.
+\end_layout
+
+\begin_layout Description
+
+\lang spanish-mexico
+Árboles
+\begin_inset space ~
+\end_inset
+
+semejantes: árboles que comparten los mismos datos pero no necesariamente
+ la misma estructura.
+\end_layout
+
+\begin_layout Chapter
+
+\lang spanish-mexico
+Árboles Binarios (AB)
+\end_layout
+
+\begin_layout Section
+
+\lang spanish-mexico
+Definición
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish-mexico
+Un árbol es binario si su grado es 2.
+ Existen diversos tipos de árboles binarios, pero los más usados son los
+ 
+\emph on
+árboles de búsqueda binaria 
+\emph default
+(ABB) y los 
+\emph on
+árboles de codificación Huffman
+\emph default
+.
+ La Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:3"
+
+\end_inset
+
+ muestra un árbol binario.
+\end_layout
+
+\begin_layout Standard
+
+\lang spanish-mexico
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename graficos/grafico3.pdf
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang spanish-mexico
+\begin_inset Caption
+
+\begin_layout Plain Layout
+
+\lang spanish-mexico
+Un árbol binario de búsqueda, lleno, balanceado en altura y equilibrado.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
